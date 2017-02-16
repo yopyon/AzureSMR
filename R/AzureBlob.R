@@ -484,6 +484,9 @@ azurePutBlob <- function(azureActiveContext, blob, contents = "", file = "",
 
   if (!missing(contents) && !missing(file))
     stop("Provided either Content OR file Argument")
+  
+  if (!missing(file))
+    contents <- readr::read_file((file))
 
 
   STK <- refreshStorageKey(azureActiveContext, SAI, RGI)
